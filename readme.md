@@ -23,3 +23,38 @@ library for scrape that I use for clrarification on some detail.
 3. npm run build
 4. npm start
 ```
+
+# Project Setup Instructions
+This project leverages Docker to simplify the setup and deployment of Apache Airflow and MLflow. Follow the steps below to get started.
+## Prerequisites
+```
+Docker installed and running
+Docker Compose installed
+Setting Up Airflow and MLflow
+```
+```
+Navigate to the Docker setup directory:
+cd airflow/airflow-docker/
+Start the services using Docker Compose:
+docker-compose up
+This command will spin up all necessary containers for both Airflow and MLflow.
+Wait a few moments for all containers to fully initialize, then access the UIs:
+Airflow Web UI: http://localhost:8080/
+MLflow Tracking UI: http://localhost:5500/
+Running the Project
+```
+```
+Run the Image Scrape DAG first.
+This DAG collects additional images necessary for training.
+The original training images are from Kaggle and can be accessed here:
+Shutterstock Dataset for AI vs Human Gen Image
+Model Training and MLflow Logging
+Once the training DAG runs, it will automatically log metrics, parameters, and models to MLflow.
+Configuration Notes
+```
+```
+Environment variables and dependency configurations can be adjusted in the .env file located inside airflow-docker/.
+This is also where you can specify additional Python dependencies needed by your DAGs.
+To stop the services, press Ctrl+C in the terminal, or run:
+docker-compose down
+```
