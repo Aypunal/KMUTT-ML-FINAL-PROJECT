@@ -1,60 +1,125 @@
-scrape_real_imp.py is run for create storage for scrape and will scrape picture as TARGET_TOTAL on topic and specific site in queries(can also just add topic no need to always add specific site).(still have like 0.66% picture that not real life  picture ex. infographic or something like that)
-and the make_7_day_pic.py is random pic DAYS * IMAGES_PER_DAY to store in 1 folder and DAYS subfolders it also contain log for picture that already use so if you run later it will not get the picture that already use.
-https://pypi.org/project/duckduckgo-search/#duckduckgo-search-operators
-library for scrape that I use for clrarification on some detail.
+# 🖼️ AI-Generated Image Detection Web Application
 
-# How to run Web Application
-## Requirements
+This project provides a full-stack web application to detect whether an image is real or AI-generated. It leverages learning models, a data scraping pipeline, MLflow for experiment tracking, and Apache Airflow for automation.
+
+---
+
+## 📂 Project Structure
+
 ```
-1.Node.js
-2.Python
-```
-## Backend
-```
-1. cd backend
-2. pip install -r requirements.txt
-3. python api.py
+backend/               ← Flask API for inference
+frontend/              ← Next.js frontend for user interaction
+airflow/               ← Dockerized setup for Airflow & MLflow
+train/                 ← Training shits
 ```
 
-## Frontend
-```
-1. npm install
-2. update api endpoint on page.jsx (your backend api endpoint, will do .env later)
-3. npm run build
-4. npm start
+---
+
+## 🧠 Key Features
+
+- Real vs. AI-generated image classification
+- Learning models: Traditional CNN, MobileNetV2, EfficientNetB0
+- MLflow for experiment tracking
+- Apache Airflow for CI/CD automation
+- Docker for reproducible deployment
+
+---
+
+## 🕹️ Web Application Usage
+
+### ✅ Requirements
+
+- **Node.js**
+- **Python 3.x**
+
+---
+
+### 🔧 Backend Setup
+
+```bash
+cd backend
+pip install -r requirements.txt
+python api.py
 ```
 
-# Project Setup Instructions
-This project leverages Docker to simplify the setup and deployment of Apache Airflow and MLflow. Follow the steps below to get started.
-## Prerequisites
+---
+
+### 🎨 Frontend Setup
+
+```bash
+npm install
+# update api endpoint on page.jsx (your backend api endpoint, will do .env later)
+npm run build
+npm start
 ```
-Docker installed and running
-Docker Compose installed
-Setting Up Airflow and MLflow
-```
-```
-Navigate to the Docker setup directory:
+
+---
+
+## 📦 Docker-Based Setup (Airflow + MLflow)
+
+We use Docker Compose to simplify usage of Apache Airflow and MLflow.
+
+### ⚙️ Prerequisites
+
+- Docker
+- Docker Compose
+
+---
+
+### 🚀 Launch Services
+
+```bash
 cd airflow/airflow-docker/
-Start the services using Docker Compose:
 docker-compose up
-This command will spin up all necessary containers for both Airflow and MLflow.
-Wait a few moments for all containers to fully initialize, then access the UIs:
-Airflow Web UI: http://localhost:8080/
-MLflow Tracking UI: http://localhost:5500/
-Running the Project
 ```
-```
-Run the Image Scrape DAG first.
-This DAG collects additional images necessary for training.
-The original training images are from Kaggle and can be accessed here:
-Shutterstock Dataset for AI vs Human Gen Image
-Model Training and MLflow Logging
-Once the training DAG runs, it will automatically log metrics, parameters, and models to MLflow.
-Configuration Notes
-```
-```
-Environment variables and dependency configurations can be adjusted in the .env file located inside airflow-docker/.
-This is also where you can specify additional Python dependencies needed by your DAGs.
-To stop the services, press Ctrl+C in the terminal, or run:
+
+This command initializes the containers. Once ready, access:
+
+- **Airflow UI**: http://localhost:8080/
+- **MLflow UI**: http://localhost:5500/
+
+To stop services:
+
+```bash
 docker-compose down
 ```
+
+---
+
+## 📈 MLflow Integration
+
+MLflow is integrated to track experiments, log metrics, store trained models, and visualize performance comparisons.
+
+### 🧪 How to Use
+
+1. Trigger the **Model Training DAG** from Airflow.
+2. MLflow will automatically:
+   - Log metrics and parameters
+   - Save plots and model artifacts
+   - Assign a unique run ID for traceability
+3. Open **http://localhost:5500/** to compare and analyze experiments.
+
+
+---
+
+## 🖼️ Image Scraping & Dataset Generation
+
+### `scrape_real_imp.py`
+
+- Scrapes real images from **topics** and **sites**.
+- Sets a `TARGET_TOTAL` number of images to collect.
+- ~0.6% of the results may include non-photo visuals like infographics.
+- Scraping powered by [duckduckgo-search](https://pypi.org/project/duckduckgo-search/).
+
+### `make_7_day_pic.py`
+
+- Randomly selects `DAYS * IMAGES_PER_DAY` images.
+- Organizes them into folders by day.
+
+---
+
+## 📁 Dataset Sources
+
+- **Real images**: Scraped from Pexels, Unsplash
+- **AI-generated images**: Generated using Stable Diffusion, or collected from Midjourney/DALL·E communities
+- **Kaggle dataset**: [Shutterstock Dataset – AI vs Human Images](https://www.kaggle.com/datasets/shreyasraghav/shutterstock-dataset-for-ai-vs-human-gen-image)
