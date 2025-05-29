@@ -2,7 +2,12 @@
 
 This project provides a full-stack web application to detect whether an image is real or AI-generated. It leverages learning models, a data scraping pipeline, MLflow for experiment tracking, and Apache Airflow for automation.
 
----
+
+
+## ☁️ Wants to try ? 
+
+You can access the website right here on the cloud : https://m-lops-web.vercel.app/
+
 
 ## 📂 Project Structure
 
@@ -13,7 +18,7 @@ airflow/               ← Dockerized setup for Airflow & MLflow
 train/                 ← Training shits
 ```
 
----
+
 
 ## 🧠 Key Features
 
@@ -23,7 +28,7 @@ train/                 ← Training shits
 - Apache Airflow for CI/CD automation
 - Docker for reproducible deployment
 
----
+
 
 ## 🕹️ Web Application Usage
 
@@ -32,7 +37,7 @@ train/                 ← Training shits
 - **Node.js**
 - **Python 3.x**
 
----
+
 
 ### 🔧 Backend Setup
 
@@ -53,7 +58,7 @@ npm run build
 npm start
 ```
 
----
+
 
 ## 📦 Docker-Based Setup (Airflow + MLflow)
 
@@ -84,7 +89,7 @@ To stop services:
 docker-compose down
 ```
 
----
+
 
 ## 📈 MLflow Integration
 
@@ -100,7 +105,6 @@ MLflow is integrated to track experiments, log metrics, store trained models, an
 3. Open **http://localhost:5500/** to compare and analyze experiments.
 
 
----
 
 ## 🖼️ Image Scraping & Dataset Generation
 
@@ -116,7 +120,7 @@ MLflow is integrated to track experiments, log metrics, store trained models, an
 - Randomly selects `DAYS * IMAGES_PER_DAY` images.
 - Organizes them into folders by day.
 
----
+
 
 ## 📁 Dataset Sources
 
